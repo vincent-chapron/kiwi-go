@@ -24,6 +24,7 @@ func main() {
     iris.Use(cors.Default())
 	iris.Post("/update/statistics", func (ctx *iris.Context) {
         fmt.Println("ON POST")
+        fmt.Println("PROMOTION: ", _promotion.Id)
         if err := ctx.ReadJSON(&_promotion); err != nil {
             ctx.JSON(400, map[string]string {"success": "false"})
         } else {
