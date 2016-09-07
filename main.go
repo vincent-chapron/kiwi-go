@@ -1,6 +1,7 @@
 package main
 
 import "github.com/kataras/iris"
+import "github.com/iris-contrib/middleware/cors"
 import "fmt"
 
 type Promotion struct {
@@ -20,6 +21,7 @@ func main() {
     _promotion := Promotion{}
     _statistics := Statistics{}
 
+    iris.Use(cors.Default())
 	iris.Post("/update/statistics", func (ctx *iris.Context) {
         if err := ctx.ReadJSON(&_promotion); err != nil {
             ctx.JSON(400, map[string]string {"success": "false"})
